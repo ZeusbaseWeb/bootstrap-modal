@@ -1,4 +1,7 @@
-Bootstrap Modal v2.2.5
+**Note**: Since this plugin was created to solve a lot of the issues with BS2, it still uses the BS2 markup syntax. Currently I believe the default BS3 modal addresses some of the bigger issues and is not worth maintaining two versions of this plugin.
+
+
+Bootstrap Modal v2.2.6
 =============
 
 See live demo [here](http://jschr.github.com/bootstrap-modal/).
@@ -26,8 +29,6 @@ If you're using the loading spinner functionality you may also need to change th
             '</div>' +
         '</div>';
 
-
-**Note**: Since this plugin was created to solve a lot of the issues with BS2, it still uses the BS2 markup syntax. Currently I believe the default BS3 modal addresses some of the bigger issues and is not worth maintaining two versions of this plugin.
 
 
 Overview
@@ -61,10 +62,10 @@ In addition to the standard bootstrap options, you now have access to the follow
 **Modal**
 
 + **width**
-Set the inital width of the modal.
+Set the initial width of the modal.
 
 + **height**
-Set the inital height of the modal.
+Set the initial height of the modal.
 
 + **maxHeight**
 Set the max-height of the modal-body.
@@ -110,6 +111,24 @@ Provide a custom image or animation for the loading spinner.
 + **backdropTemplate**
 Provide a custom modalmanager backdrop. This backdrop is used when `$element.modalmanager('loading')` is called.
 
+Getting a reference to the modal manager
+-----------
+
+If you did not created your own ModalManager, perhaps you'll need a reference to it. That can be easily accomplished using the following snippet:
+
+```javascript
+	var modalManager = $("body").data("modalmanager");
+	var openModals = modalManager.getOpenModals();
+	modalManager.removeLoading();
+```
+
+After that, you'll be able to call any methods that modal manager has, such as:
+
+* removeLoading (remove the loading and backdrop window);
+* getOpenModals (to get the modals that are already open);
+* etc;
+
+
 Disable Background Scrolling
 -----------
 
@@ -127,7 +146,7 @@ The reason for doing this instead of just simply setting `overflow: hidden` when
 Constrain Modal to Window Size
 -----------
 	
-You can bind the the height of the modal body to the window with something like this:
+You can bind the height of the modal body to the window with something like this:
 	
     $.fn.modal.defaults.maxHeight = function(){
         // subtract the height of the modal header and footer
